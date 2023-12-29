@@ -6,12 +6,13 @@ import {ProductCard} from '../components/ProductCard';
 export function Home({navigation}) {
   const {productData} = useProductDataContext();
 
-  const productCardPressHandler = productId => {
-    navigation.navigate('ProductDetails',{
-        productId
+  const productCardPressHandler = (productId, idx) => {
+    navigation.navigate('ProductDetails', {
+      productId,
+      bgId: idx % 2,
     });
   };
-//   console.log(navigation)
+
   const renderProductCard = ({item, index}) => {
     return (
       <ProductCard
@@ -21,7 +22,7 @@ export function Home({navigation}) {
         image={item.image}
         index={index}
         onProductCardPress={() => {
-          productCardPressHandler(item.id);
+          productCardPressHandler(item.id, index);
         }}
       />
     );

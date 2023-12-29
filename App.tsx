@@ -11,25 +11,22 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Home} from './screens/Home';
 import {ProductDetails} from './screens/ProductDetails';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {
-  ProductDataContextProvider,
-  useProductDataContext,
-} from './contexts/productDataContext';
+import {ProductDataContextProvider} from './contexts/productDataContext';
 
 const StackNavigator = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
   return (
     <NavigationContainer>
-        <ProductDataContextProvider>
-          <StackNavigator.Navigator initialRouteName="Home">
-            <StackNavigator.Screen name="Home" component={Home} />
-            <StackNavigator.Screen
-              name="ProductDetails"
-              component={ProductDetails}
-            />
-          </StackNavigator.Navigator>
-        </ProductDataContextProvider>
+      <ProductDataContextProvider>
+        <StackNavigator.Navigator initialRouteName="Home">
+          <StackNavigator.Screen name="Home" component={Home} />
+          <StackNavigator.Screen
+            name="ProductDetails"
+            component={ProductDetails}
+          />
+        </StackNavigator.Navigator>
+      </ProductDataContextProvider>
     </NavigationContainer>
   );
 }

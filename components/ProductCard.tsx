@@ -6,7 +6,7 @@ type ProductCardProps = {
   price: string;
   image: string;
   index: number;
-  onProductCardPress: ()=>void;
+  onProductCardPress: () => void;
 };
 export const ProductCard = ({
   name,
@@ -14,22 +14,24 @@ export const ProductCard = ({
   price,
   image,
   index,
-  onProductCardPress
+  onProductCardPress,
 }: ProductCardProps) => {
   const bgStyles = index % 2 ? styles.cardBgOne : styles.cardBgTwo;
   return (
     <TouchableOpacity
       onPress={onProductCardPress}
       style={[styles.cardContainer, bgStyles]}>
-      <Text style={styles.category}>{category}</Text>
-      <Text style={styles.name}>{name}</Text>
-      <Text style={styles.price}>${price}</Text>
-      {image ? <Image uri={image} height={30} width={30} />: null}
+      <View>
+        <Text style={styles.category}>{category}</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.price}>${price}</Text>
+      </View>
+      <View style={styles.imageContainer}>
+        <Image source={{uri: image}} height={100} width={100} />
+      </View>
     </TouchableOpacity>
   );
 };
-
-
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -38,6 +40,13 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderWidth: 1,
     borderColor: '#ffffff',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  imageContainer: {
+    position: 'relative',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   cardBgOne: {
     backgroundColor: '#9CE5CB',
@@ -51,10 +60,10 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 28,
-    fontWeight: '700'
+    fontWeight: '700',
   },
   price: {
     fontSize: 24,
-    fontWeight: '600'
+    fontWeight: '600',
   },
 });
